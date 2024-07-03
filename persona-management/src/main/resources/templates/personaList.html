@@ -1,0 +1,195 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <title>Persona Details</title>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--	<style>-->
+		
+<!--	</style>-->
+<!--	<script>-->
+		
+<!--	</script>-->
+<!--	<body>-->
+<!--		Header DTDC Logo -->
+<!--		 Add Persona button right corner-->
+<!--		Add hear thead with all header fields-->
+<!--		<tbody>-->
+<!--            <tr th:each="field : ${fieldList}">-->
+<!--                <td th:text="${field.personaName}"></td>-->
+<!--                <td th:text="${field.sectionName}"></td>-->
+<!--                <td th:text="${field.fieldName}"></td>-->
+<!--            </tr>-->
+<!--        </tbody>-->
+<!--	</body>-->
+<!--</html>-->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Persona Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #003366;
+            color: white;
+        }
+        .header .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .logo img {
+            max-width: 150px;
+        }
+        .btn-container {
+            text-align: right;
+            margin: 20px;
+        }
+        .btn {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .container {
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .footer-blue, .footer-red {
+            padding: 20px;
+            color: white;
+        }
+        .footer-blue {
+            background-color: #003366;
+        }
+        .footer-red {
+            background-color: #FF0000;
+        }
+		th {
+		    background-color: darkblue;
+		    color: white;
+		   }
+		
+        .footer-blue .footer-content {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+        }
+
+        .footer-blue .contact-info {
+            text-align: left;
+        }
+        .footer-blue .contact-info p {
+            margin: 5px 0;
+        }
+        .footer-blue .social-icons {
+            display: flex;
+			margin-top: 10px;
+        }
+        .footer-blue .social-icons a {
+			margin-left: 10px;
+        }
+        .footer-blue .social-icons img {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title">Persona Control Panel</div>
+        <div class="logo">
+<!--            <img src="/persona-management/src/main/resources/static/images/download.png" alt="DTDC Logo">-->
+			<img th:src="@{/persona-management/src/main/resources/static/images/download.png}" alt="DTDC Logo">
+        </div>
+    </div>
+    <div class="btn-container">
+        <a href="/persona-management/persona/add" class="btn">Add Persona</a>
+    </div>
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Persona Name</th>
+                    <th>Section Name</th>
+                    <th>Field Name</th>
+					<th>Created By</th>
+					<th>Created Date</th>
+					<th>Modified By</th>
+					<th>Modified Date</th>
+					<th>Edit</th>
+					<th>Delete</th>	
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="field : ${fieldList}">
+                    <td th:text="${field.personaName}"></td>
+                    <td th:text="${field.sectionName}"></td>
+                    <td th:text="${field.fieldName}"></td>
+					<td th:text="${field.createdBy}"></td>
+					<td th:text="${field.createdDate}"></td>
+					<td th:text="${field.modifiedBy}"></td>
+					<td th:text="${field.modifiedDate}"></td>
+					<td>
+					    <a th:href="@{${field.editUrl}}"><i class="fas fa-edit"></i></a>
+					</td>
+					<td>
+					    <a th:href="@{${field.deleteUrl}}"><i class="fas fa-trash-alt"></i></a>
+					</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="footer-blue">
+        <div class="footer-content">
+            <div class="logo">
+                <img src="/persona-management/src/main/resources/static/images/download.png" alt="DTDC Logo">
+                <div class="contact-info">
+                    <p>Email: customersupport@dtdc.com</p>
+                    <p>Phone: 91-9606 911 811</p>
+                    <p>Follow us on:</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com"><img src="/persona-management/src/main/resources/static/images/facebook.png" alt="Facebook"></a>
+                        <a href="https://www.twitter.com"><img src="/persona-management/src/main/resources/static/images/twitter.png" alt="Twitter"></a>
+                        <a href="https://www.instagram.com"><img src="/persona-management/src/main/resources/static/images/instagram.jfif" alt="Instagram"></a>
+                        <a href="https://www.linkedin.com"><img src="/persona-management/src/main/resources/static/images/linkedin.png" alt="LinkedIn"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-red">
+        <p>&copy; 2024 DTDC. All rights reserved.</p>
+    </div>
+</body>
+</html>
+
+
+
